@@ -72,7 +72,7 @@ async def ajouter_infirmier(infirmier: dict):
 @app.get('/infirmiers')
 async def obtenir_infirmiers():
     try:
-        response = requests.get("http://127.0.0.1:8804/infirmiers")
+        response = requests.get("http://127.0.0.1:8803/infirmiers")
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
