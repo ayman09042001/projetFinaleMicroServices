@@ -1,9 +1,18 @@
 from fastapi import FastAPI, HTTPException
 from models import Medecin, HoraireHebdomadaire
 from config import get_snowflake_connection
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
-
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 @app.post('/medecins', response_model=Medecin)
 async def ajouter_medecin(medecin: Medecin):
     conn = get_snowflake_connection()
